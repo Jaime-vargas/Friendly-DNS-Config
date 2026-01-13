@@ -1,4 +1,4 @@
-package com.app.dhcp.Jwt;
+package com.app.dhcp.jwt;
 
 import com.app.dhcp.enums.HttpStatusError;
 import com.app.dhcp.enums.JwtValidationError;
@@ -8,6 +8,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.core.internal.Function;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -74,19 +75,19 @@ public class JwtUtil {
             jwtParseBuilder.parseClaimsJws(token);
             return true;
         }catch (ExpiredJwtException e) {
-            throw new HandleException(401, HttpStatusError.UNAUTHORIZED.toString(), JwtValidationError.TOKEN_HAS_EXPIRED.toString());
+            throw new HandleException(HttpStatus.UNAUTHORIZED, HttpStatusError.UNAUTHORIZED, JwtValidationError.TOKEN_HAS_EXPIRED.toString());
 
         } catch (MalformedJwtException e) {
-            throw new HandleException(400, HttpStatusError.BAD_REQUEST.toString(), JwtValidationError.TOKEN_HAS_WRONG_FORMAT.toString());
+            throw new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, JwtValidationError.TOKEN_HAS_WRONG_FORMAT.toString());
 
         } catch (UnsupportedJwtException e) {
-            throw new HandleException(400, HttpStatusError.BAD_REQUEST.toString(), JwtValidationError.TOKEN_NO_COMPATIBLE.toString());
+            throw new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, JwtValidationError.TOKEN_NO_COMPATIBLE.toString());
 
         } catch (IllegalArgumentException e) {
-            throw new HandleException(400, HttpStatusError.BAD_REQUEST.toString(), JwtValidationError.TOKEN_NOT_VALID.toString());
+            throw new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, JwtValidationError.TOKEN_NOT_VALID.toString());
 
         } catch (Exception e) {
-            throw new HandleException(500, HttpStatusError.SERVER_ERROR.toString(), JwtValidationError.TOKEN_COULD_NOT_VALIDATE.toString());
+            throw new HandleException(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatusError.SERVER_ERROR, JwtValidationError.TOKEN_COULD_NOT_VALIDATE.toString());
         }
     }
 

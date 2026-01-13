@@ -1,5 +1,6 @@
-package com.app.dhcp.Jwt;
+package com.app.dhcp.jwt;
 
+import com.app.dhcp.enums.HttpStatusError;
 import com.app.dhcp.exeptionsHandler.HandleException;
 
 import jakarta.servlet.FilterChain;
@@ -7,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,16 +66,16 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     public void sendErrorResponse(HttpServletResponse response, HandleException exception) throws IOException {
 
-        int status = exception.getStatus();
-        String error = exception.getError();
+        HttpStatus httpStatusCode = exception.getHttpStatusCode();
+        HttpStatusError httpStatusError = exception.getHttpStatusError();
         String message = exception.getMessage();
 
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("status", status);
-        body.put("error", error);
+        body.put("status", httpStatusCode);
+        body.put("error", httpStatusError);
         body.put("message", message);
 
-        response.setStatus(status);
+        response.setStatus(httpStatusCode.value());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(body.toString());

@@ -1,4 +1,4 @@
-package com.app.dhcp.Jwt;
+package com.app.dhcp.jwt;
 
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;

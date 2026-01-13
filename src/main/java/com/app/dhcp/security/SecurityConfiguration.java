@@ -1,8 +1,8 @@
 package com.app.dhcp.security;
 
-import com.app.dhcp.Jwt.JwtAuthenticationFilter;
-import com.app.dhcp.Jwt.JwtAuthorizationFilter;
-import com.app.dhcp.Jwt.JwtUtil;
+import com.app.dhcp.jwt.JwtAuthenticationFilter;
+import com.app.dhcp.jwt.JwtAuthorizationFilter;
+import com.app.dhcp.jwt.JwtUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

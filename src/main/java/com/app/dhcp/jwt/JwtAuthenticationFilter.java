@@ -1,4 +1,4 @@
-package com.app.dhcp.Jwt;
+package com.app.dhcp.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.app.dhcp.enums.ErrorMessages;
