@@ -31,6 +31,11 @@ public class DeviceService {
         return deviceList.stream().map(Mapper::entityToDto).toList();
     }
 
+    public List<DeviceDto> getDeviceListByNetworkId(Long networkId){
+        List<Device> deviceList = deviceRepository.findByNetworkId(networkId);
+        return deviceList.stream().map(Mapper::entityToDto).toList();
+    }
+
     public DeviceDto getDeviceById(Long deviceId){
         Device device = deviceRepository.findById(deviceId).orElseThrow(
                 () ->  new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, ErrorMessages.DEVICE_NOT_FOUND.toString() +  deviceId)
@@ -53,6 +58,10 @@ public class DeviceService {
                 () -> new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, ErrorMessages.DEVICE_NOT_FOUND.toString() + deviceId)
         );
         Device device = Mapper.dtoToEntity(deviceDto);
+        Network network = networkRepository.findById(deviceDto.getNetwork_id()).orElseThrow(
+                () ->  new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, ErrorMessages.CONFIG_NOT_FOUND.toString() + deviceDto.getNetwork_id())
+        );
+        device.setNetwork(network);
         device.setId(deviceId);
         device = deviceRepository.save(device);
 
@@ -65,4 +74,5 @@ public class DeviceService {
         );
         deviceRepository.delete(device);
     }
+
 }

@@ -50,6 +50,14 @@
 			<scope>runtime</scope>
 		</dependency> -->
 
+        <!-- SSHJ FOR CONECTING WITH LINUX -->
+        <dependency>
+            <groupId>com.hierynomus</groupId>
+            <artifactId>sshj</artifactId>
+            <version>0.40.0</version>
+            <scope>compile</scope>
+        </dependency>
+
 		<!-- Database MySQL -->
 		<dependency>
 			<groupId>com.mysql</groupId>

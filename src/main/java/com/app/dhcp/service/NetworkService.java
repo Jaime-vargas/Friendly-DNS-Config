@@ -29,7 +29,7 @@ public class NetworkService {
 
     public NetworkDto getNetworkById(Long networkId){
         Network network = networkRepository.findById(networkId).orElseThrow(
-                () ->  new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, ErrorMessages.CONFIG_NOT_FOUND.toString() + networkId)
+                () ->  new HandleException(HttpStatus.BAD_REQUEST, HttpStatusError.BAD_REQUEST, ErrorMessages.CONFIG_NOT_FOUND.getMessage() + networkId)
         );
         return Mapper.entityToDto(network);
     }

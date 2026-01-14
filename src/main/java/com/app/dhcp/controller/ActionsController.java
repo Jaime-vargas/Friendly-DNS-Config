@@ -17,7 +17,7 @@ public class ActionsController {
 
     @GetMapping("/config")
     public ResponseEntity<?> crateConfigFile(){
-        actionsService.createConfigFile();
+        actionsService.doall();
         return ResponseEntity.ok().build();
     }
 }
