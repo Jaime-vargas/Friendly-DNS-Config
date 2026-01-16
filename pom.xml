@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sks</groupId>
-	<artifactId>app.dhcp</artifactId>
+	<artifactId>friendlyDHCP</artifactId>
 	<version>0.0.1</version>
 	<name>friendlyDHCP</name>
 	<description>Proyecto para gestion de DHCP</description>
