@@ -33,11 +33,13 @@ build/
 .vscode/
 
 ### Properties ###
-/resources/application-*.properties
+/resources/application-dev.properties
 
 ### Docker ###
-docker-compose.yml
 Dockerfile
 
 ### Builds ###
-friendlydhcp
+friendlydhcp*
+
+### Other ###
+/configfile/*
